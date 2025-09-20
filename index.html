@@ -15,6 +15,7 @@
             <h1>📊 Análise de Viabilidade Econômica</h1>
             <p>Sistema profissional para análise de empresas em estágio inicial</p>
             <div class="version-info">v1.0 - Desenvolvido com ❤️ para empreendedores</div>
+            <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Imprimir</button>
         </header>
 
         <nav class="nav-tabs">
@@ -148,11 +149,9 @@
                         <h3>Serviços/Produtos</h3>
                         <button class="btn btn-primary" onclick="adicionarServico()">+ Adicionar Serviço</button>
                     </div>
-
                     <div class="alert alert-info">
                         <strong>Dica:</strong> O mix percentual deve somar 100%. O ticket médio é calculado automaticamente.
                     </div>
-
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
@@ -165,11 +164,9 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody id="servicosTableBody">
-                            </tbody>
+                            <tbody id="servicosTableBody"></tbody>
                         </table>
                     </div>
-
                     <div class="summary-info">
                         <div class="summary-item">
                             <span class="summary-label">Total Mix:</span>
@@ -190,94 +187,76 @@
 
         <!-- Custos Tab -->
         <section id="custos" class="tab-content">
-            <div class="costs-grid">
-                <div class="card">
-                    <div class="card__body">
-                        <div class="section-header">
-                            <h3>Materiais e Insumos</h3>
-                            <button class="btn btn-primary" onclick="adicionarMaterial()">+ Adicionar Material</button>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Material</th>
-                                        <th>Custo Unit. (R$)</th>
-                                        <th>Qtd/Serviço</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="materiaisTableBody">
-                                </tbody>
-                            </table>
-                        </div>
+            <div class="accordion">
+                <button class="accordion-toggle">Materiais e Insumos</button>
+                <div class="accordion-content">
+                    <button class="btn btn-primary" onclick="adicionarMaterial()">+ Adicionar Material</button>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Material</th>
+                                    <th>Custo Unit. (R$)</th>
+                                    <th>Qtd/Serviço</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="materiaisTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card__body">
-                        <div class="section-header">
-                            <h3>Equipamentos</h3>
-                            <button class="btn btn-primary" onclick="adicionarEquipamento()">+ Adicionar Equipamento</button>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Equipamento</th>
-                                        <th>Qtd</th>
-                                        <th>Valor Unit. (R$)</th>
-                                        <th>Vida Útil (meses)</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="equipamentosTableBody">
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="summary-info">
-                            <div class="summary-item">
-                                <span class="summary-label">Total CAPEX:</span>
-                                <span class="summary-value" id="totalCAPEX">R$ 0,00</span>
-                            </div>
-                            <div class="summary-item">
-                                <span class="summary-label">Depreciação Mensal:</span>
-                                <span class="summary-value" id="depreciacao">R$ 0,00</span>
-                            </div>
-                        </div>
+                <button class="accordion-toggle">Equipamentos</button>
+                <div class="accordion-content">
+                    <button class="btn btn-primary" onclick="adicionarEquipamento()">+ Adicionar Equipamento</button>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Equipamento</th>
+                                    <th>Qtd</th>
+                                    <th>Valor Unit. (R$)</th>
+                                    <th>Vida Útil (meses)</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="equipamentosTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card__body">
-                        <div class="section-header">
-                            <h3>Gastos Fixos Mensais</h3>
-                            <button class="btn btn-primary" onclick="adicionarGastoFixo()">+ Adicionar Gasto</button>
-                        </div>
+                <button class="accordion-toggle">Gastos Fixos Mensais</button>
+                <div class="accordion-content">
+                    <button class="btn btn-primary" onclick="adicionarGastoFixo()">+ Adicionar Gasto</button>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Valor (R$)</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gastosFixosTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
 
-                        <div class="table-responsive">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Descrição</th>
-                                        <th>Valor (R$)</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="gastosFixosTableBody">
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="summary-info">
-                            <div class="summary-item">
-                                <span class="summary-label">Total Gastos Fixos:</span>
-                                <span class="summary-value" id="totalGastosFixos">R$ 0,00</span>
-                            </div>
-                        </div>
+                <button class="accordion-toggle">Custos Variáveis</button>
+                <div class="accordion-content">
+                    <button class="btn btn-primary" onclick="adicionarCustoVariavel()">+ Adicionar Custo Variável</button>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Custo Unit. (R$)</th>
+                                    <th>Qtd/Serviço</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="custosVariaveisTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -299,7 +278,6 @@
                                 <input type="range" id="ticketSlider" min="50" max="200" value="112" step="5">
                             </div>
                         </div>
-
                         <div class="scenario-results">
                             <div class="result-item">
                                 <span class="result-label">Receita Mensal:</span>
@@ -316,7 +294,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card chart-card">
                     <div class="card__body">
                         <h3>Comparação de Cenários</h3>
@@ -335,7 +312,7 @@
                         <div class="indicators-detailed">
                             <div class="indicator-detailed">
                                 <div class="indicator-header">
-                                    <span class="indicator-name">Investimento Total</span>
+                                    <span class="indicator-name">Investimento Total</span>  
                                     <span class="indicator-amount" id="investimentoTotal">R$ 0</span>
                                 </div>
                             </div>
@@ -353,43 +330,35 @@
                             </div>
                             <div class="indicator-detailed">
                                 <div class="indicator-header">
-                                    <span class="indicator-name">ROI - Retorno sobre Investimento</span>
+                                    <span class="indicator-name">ROI</span>
                                     <span class="indicator-amount" id="roiDetalhado">0%</span>
                                 </div>
                             </div>
                             <div class="indicator-detailed">
                                 <div class="indicator-header">
-                                    <span class="indicator-name">Payback - Tempo de Retorno</span>
+                                    <span class="indicator-name">Payback</span>
                                     <span class="indicator-amount" id="paybackDetalhado">0 meses</span>
                                 </div>
                             </div>
                             <div class="indicator-detailed">
                                 <div class="indicator-header">
-                                    <span class="indicator-name">VPL - Valor Presente Líquido</span>
+                                    <span class="indicator-name">VPL</span>
                                     <span class="indicator-amount" id="vplDetalhado">R$ 0</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card__body">
                         <h3>Recomendação Final</h3>
                         <div class="recommendation" id="recommendationCard">
-                            <div class="recommendation-status" id="recommendationStatus">
-                                Analisando...
-                            </div>
-                            <div class="recommendation-text" id="recommendationText">
-                                Configure os parâmetros para receber a análise de viabilidade.
-                            </div>
-                            <div class="recommendation-details" id="recommendationDetails">
-                            </div>
+                            <div class="recommendation-status" id="recommendationStatus">Analisando...</div>
+                            <div class="recommendation-text" id="recommendationText">Configure os parâmetros para receber a análise.</div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card__body">
                     <h3>DRE Simplificada (12 meses)</h3>
@@ -405,8 +374,7 @@
                                     <th>Lucro Líquido</th>
                                 </tr>
                             </thead>
-                            <tbody id="dreTableBody">
-                            </tbody>
+                            <tbody id="dreTableBody"></tbody>
                         </table>
                     </div>
                 </div>
@@ -416,11 +384,20 @@
 
     <footer class="app-footer">
         <div class="footer-content">
-            <p>&copy; 2025 Sistema de Análise de Viabilidade Econômica. Desenvolvido para empreendedores.</p>
+            <p>&copy; 2025 Sistema de Análise de Viabilidade Econômica.</p>
             <p>Versão 1.0 - Hospedado no GitHub Pages</p>
         </div>
     </footer>
 
     <script src="app.js"></script>
+    <script>
+        // Accordion
+        document.querySelectorAll('.accordion-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
