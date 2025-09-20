@@ -14,7 +14,7 @@
         <header class="app-header">
             <h1>📊 Análise de Viabilidade Econômica</h1>
             <p>Sistema profissional para análise de empresas em estágio inicial</p>
-            <div class="version-info">v1.0 - Desenvolvido para empreendedores</div>
+            <div class="version-info">v2.0 - Desenvolvido com ❤️ para empreendedores</div>
             <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Imprimir</button>
         </header>
 
@@ -23,6 +23,8 @@
             <button class="nav-tab" data-tab="premissas">Premissas</button>
             <button class="nav-tab" data-tab="servicos">Serviços</button>
             <button class="nav-tab" data-tab="custos">Custos</button>
+            <button class="nav-tab" data-tab="capex">CAPEX</button>
+            <button class="nav-tab" data-tab="investimento">Investimento</button>
             <button class="nav-tab" data-tab="cenarios">Cenários</button>
             <button class="nav-tab" data-tab="analise">Análise</button>
         </nav>
@@ -188,9 +190,11 @@
         <!-- Custos Tab -->
         <section id="custos" class="tab-content">
             <div class="accordion">
-                <button class="accordion-toggle">Materiais e Insumos</button>
-                <div class="accordion-content">
-                    <button class="btn btn-primary" onclick="adicionarMaterial()">+ Adicionar Material</button>
+                <button class="accordion-toggle active">Materiais e Insumos</button>
+                <div class="accordion-content active">
+                    <div class="section-header">
+                        <button class="btn btn-primary" onclick="adicionarMaterial()">+ Adicionar Material</button>
+                    </div>
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
@@ -206,45 +210,11 @@
                     </div>
                 </div>
 
-                <button class="accordion-toggle">Equipamentos</button>
-                <div class="accordion-content">
-                    <button class="btn btn-primary" onclick="adicionarEquipamento()">+ Adicionar Equipamento</button>
-                    <div class="table-responsive">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Equipamento</th>
-                                    <th>Qtd</th>
-                                    <th>Valor Unit. (R$)</th>
-                                    <th>Vida Útil (meses)</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="equipamentosTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <button class="accordion-toggle">Gastos Fixos Mensais</button>
-                <div class="accordion-content">
-                    <button class="btn btn-primary" onclick="adicionarGastoFixo()">+ Adicionar Gasto</button>
-                    <div class="table-responsive">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Descrição</th>
-                                    <th>Valor (R$)</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="gastosFixosTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
                 <button class="accordion-toggle">Custos Variáveis</button>
                 <div class="accordion-content">
-                    <button class="btn btn-primary" onclick="adicionarCustoVariavel()">+ Adicionar Custo Variável</button>
+                    <div class="section-header">
+                        <button class="btn btn-primary" onclick="adicionarCustoVariavel()">+ Adicionar Custo Variável</button>
+                    </div>
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
@@ -257,6 +227,142 @@
                             </thead>
                             <tbody id="custosVariaveisTableBody"></tbody>
                         </table>
+                    </div>
+                </div>
+
+                <button class="accordion-toggle">Gastos Fixos Mensais</button>
+                <div class="accordion-content">
+                    <div class="section-header">
+                        <button class="btn btn-primary" onclick="adicionarGastoFixo()">+ Adicionar Gasto</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Valor (R$)</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gastosFixosTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="summary-info">
+                        <div class="summary-item">
+                            <span class="summary-label">Total Gastos Fixos:</span>
+                            <span class="summary-value" id="totalGastosFixos">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPEX Tab -->
+        <section id="capex" class="tab-content">
+            <div class="card">
+                <div class="card__body">
+                    <div class="section-header">
+                        <h3>Equipamentos e CAPEX</h3>
+                        <button class="btn btn-primary" onclick="adicionarEquipamento()">+ Adicionar Equipamento</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Equipamento</th>
+                                    <th>Qtd</th>
+                                    <th>Valor Unit. (R$)</th>
+                                    <th>Valor Total (R$)</th>
+                                    <th>Vida Útil (meses)</th>
+                                    <th>Depreciação Mensal (R$)</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="equipamentosTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="summary-info">
+                        <div class="summary-item">
+                            <span class="summary-label">Total CAPEX:</span>
+                            <span class="summary-value" id="totalCAPEX">R$ 0,00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Depreciação Mensal:</span>
+                            <span class="summary-value" id="depreciacaoMensal">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body">
+                    <h3>Resumo do CAPEX</h3>
+                    <canvas id="capexChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investimento Inicial Tab -->
+        <section id="investimento" class="tab-content">
+            <div class="card">
+                <div class="card__body">
+                    <h3>Composição do Investimento Inicial</h3>
+                    <div class="investment-summary">
+                        <div class="investment-item">
+                            <div class="investment-label">CAPEX (Equipamentos)</div>
+                            <div class="investment-value" id="investimentoCAPEX">R$ 0,00</div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-label">Capital de Giro</div>
+                            <div class="investment-value" id="investimentoCapitalGiro">R$ 0,00</div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-label">Reformas e Adequações</div>
+                            <div class="investment-value">
+                                <input type="number" id="investimentoReformas" value="25000" step="1000" onchange="calculateAndUpdate()">
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-label">Estoque Inicial</div>
+                            <div class="investment-value">
+                                <input type="number" id="investimentoEstoque" value="8000" step="500" onchange="calculateAndUpdate()">
+                            </div>
+                        </div>
+                        <div class="investment-item total">
+                            <div class="investment-label">INVESTIMENTO TOTAL</div>
+                            <div class="investment-value" id="investimentoTotal">R$ 0,00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body">
+                    <h3>Distribuição do Investimento</h3>
+                    <canvas id="investmentChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body">
+                    <h3>Simulador de Financiamento</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="valorFinanciamento">Valor a Financiar (R$)</label>
+                            <input type="number" id="valorFinanciamento" value="100000" step="5000" onchange="calcularFinanciamento()">
+                        </div>
+                        <div class="form-group">
+                            <label for="taxaJuros">Taxa de Juros (% a.m.)</label>
+                            <input type="number" id="taxaJuros" value="1.5" step="0.1" onchange="calcularFinanciamento()">
+                        </div>
+                        <div class="form-group">
+                            <label for="prazoFinanciamento">Prazo (meses)</label>
+                            <input type="number" id="prazoFinanciamento" value="48" step="6" onchange="calcularFinanciamento()">
+                        </div>
+                        <div class="form-group">
+                            <label>Parcela Mensal</label>
+                            <div class="financing-result" id="parcelaMensal">R$ 0,00</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -313,7 +419,7 @@
                             <div class="indicator-detailed">
                                 <div class="indicator-header">
                                     <span class="indicator-name">Investimento Total</span>  
-                                    <span class="indicator-amount" id="investimentoTotal">R$ 0</span>
+                                    <span class="indicator-amount" id="analiseInvestimentoTotal">R$ 0</span>
                                 </div>
                             </div>
                             <div class="indicator-detailed">
@@ -385,19 +491,10 @@
     <footer class="app-footer">
         <div class="footer-content">
             <p>&copy; 2025 Sistema de Análise de Viabilidade Econômica.</p>
-            <p>Versão 1.0 - Hospedado no GitHub Pages</p>
+            <p>Versão 2.0 - Hospedado no GitHub Pages</p>
         </div>
     </footer>
 
     <script src="app.js"></script>
-    <script>
-        // Accordion
-        document.querySelectorAll('.accordion-toggle').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const content = btn.nextElementSibling;
-                content.classList.toggle('active');
-            });
-        });
-    </script>
 </body>
 </html>
