@@ -21,7 +21,7 @@ html_content = '''<!DOCTYPE html>
         <header class="app-header">
             <h1>📊 Análise de Viabilidade Econômica</h1>
             <p>Sistema profissional para análise de empresas em estágio inicial</p>
-            <div class="version-info">v1.0 - Desenvolvido com ❤️ para empreendedores</div>
+            <div class="version-info">v1.0 - Desenvolvido para empreendedores</div>
         </header>
 
         <nav class="nav-tabs">
