@@ -2,7 +2,7 @@
 
 **Sistema web profissional para análise de viabilidade econômica de empresas em estágio inicial**
 
-🔗 **Acesso Online**: https://github.com/jonesoute/Viabilidade.git
+🔗 **Acesso Online**: https://jonesoute.github.io/Viabilidade/
 
 ## 🎯 Características Principais
 
